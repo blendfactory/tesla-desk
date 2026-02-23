@@ -1,10 +1,10 @@
-# TeslaDesk — Agent ガイド
+# Tesdesk — Agent ガイド
 
 このファイルは Cursor のエージェント（Plan / Agent など）がタスク範囲と進め方を判断するためのガイドです。
 
 ## プロジェクトの目的とスコープ
 
-**TeslaDesk** は Tesla API の上に構築された vehicle intelligence platform です。車両状態の一元管理、コマンド実行、行動の自動化を、ローカルな統合コントロールシステムに集約します。
+**Tesdesk** は Tesla API の上に構築された vehicle intelligence platform です。車両状態の一元管理、コマンド実行、行動の自動化を、ローカルな統合コントロールシステムに集約します。
 
 **ロングタームのビジョン**
 

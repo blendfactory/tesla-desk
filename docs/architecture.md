@@ -1,4 +1,4 @@
-# TeslaDesk アーキテクチャ
+# Tesdesk アーキテクチャ
 
 ## 方針
 
