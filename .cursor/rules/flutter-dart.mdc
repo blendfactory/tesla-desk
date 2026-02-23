@@ -1,0 +1,25 @@
+---
+description: Flutter/Dart の解析・生成ファイル・テストの扱い
+globs: "**/*.dart"
+alwaysApply: false
+---
+
+# Flutter / Dart ルール
+
+## 解析
+
+- **Dart コードを変更したら `mise exec -- flutter analyze` を実行し、警告が 0 件になるまで修正する。** Flutter コマンドは必ず `mise exec -- flutter` で実行する。エラー・警告どちらも出さない状態でコミットする。
+- プロジェクトスキル `flutter-analyze-clean` に実行タイミングと修正の進め方の詳細がある。
+
+## 生成ファイル
+
+- 生成ファイル（`.g.dart`, `.freezed.dart`, `.mocks.dart` など）は編集しない。生成元のコードを修正し、`build_runner` 等で再生成する。
+
+## 状態管理・ナビゲーション
+
+- 現時点では StatefulWidget / StatelessWidget を基本とする。riverpod, go_router 等を導入した場合は、このルールに方針を追記する。
+
+## テスト
+
+- テストは `test/` に配置する。
+- 実行は `mise exec -- flutter test` で行う。変更に応じてテストを追加・更新する。
