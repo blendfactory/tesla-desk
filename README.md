@@ -37,7 +37,7 @@ python server/server.py
 
 - http://localhost:8080/.well-known/appspecific/com.tesla.3p.public-key.pem
 
-公開鍵の生成・配置手順は [server/README.md](server/README.md) および [server/well-known/appspecific/README.md](server/well-known/appspecific/README.md) を参照してください。
+公開鍵の生成・配置手順は [server/README.md](server/README.md) および [server/well-known/appspecific/README.md](server/well-known/appspecific/README.md) を参照してください。開発時に Fleet API へ登録する場合は、ngrok などで localhost を外部公開する必要があります（詳細は [server/README.md](server/README.md)）。
 
 ## よく使うコマンド
 
