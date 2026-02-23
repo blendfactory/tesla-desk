@@ -41,12 +41,23 @@
 | パス | 説明 |
 |------|------|
 | `lib/main.dart` | アプリのエントリとルートウィジェット |
+| `lib/core/` | 共有（ルーティング・テーマ・定数）。将来 go_router はここで定義する。 |
+| `lib/data/` | 共通データ層（Tesla API クライアント、認証、ローカル永続化）。features からはリポジトリ経由でのみ利用する。 |
+| `lib/features/` | 機能ごとのモジュール。各 feature 内に ui/、必要なら domain やリポジトリを置く。 |
 | `pubspec.yaml` | 依存関係・Flutter 設定 |
 | `analysis_options.yaml` | Dart 解析・リント設定 |
-| `test/` | 単体・ウィジェットテスト |
+| `test/` | 単体・ウィジェット・統合テスト。`lib/` と同構造で配置する。 |
+
+## アーキテクチャ方針
+
+- **レイヤー**: core（共有）/ data（API・認証）/ features（機能単位）。Tesla API は data に集約し、features からはリポジトリ・UseCase 経由で触る。
+- **状態管理**: 最初のドメイン機能実装時に Riverpod を導入する。
+- **ナビゲーション**: 画面が 2 つ以上になったら go_router を core で導入する。
 
 ## テスト
 
-- テストは `test/` に配置する。
-- 実行: `mise exec -- flutter test`
-- 変更に応じてテストを追加・更新する方針とする。
+- テストは `test/` に配置する。`lib/` と同構造（例: `lib/features/vehicle/` → `test/features/vehicle/`）。共通ヘルパーは `test/helpers/` に置く。
+- **単体**: ドメインロジック・リポジトリ（API はモック）・パーサーを優先。mocktail または mockito でモックする。
+- **ウィジェット**: 重要画面・フォームは 1 本以上を目安に追加。依存は Provider override でモックする。
+- **統合**: 主要フローは必要に応じて `integration_test/` に配置。外部 API はモックする。
+- 実行: `mise exec -- flutter test`。変更に応じてテストを追加・更新する。

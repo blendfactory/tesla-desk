@@ -15,11 +15,15 @@ alwaysApply: false
 
 - 生成ファイル（`.g.dart`, `.freezed.dart`, `.mocks.dart` など）は編集しない。生成元のコードを修正し、`build_runner` 等で再生成する。
 
-## 状態管理・ナビゲーション
+## ディレクトリ・アーキテクチャ
 
-- 現時点では StatefulWidget / StatelessWidget を基本とする。riverpod, go_router 等を導入した場合は、このルールに方針を追記する。
+- **ディレクトリ**: `lib/core/`（共有・ルーティング・テーマ）、`lib/data/`（Tesla API クライアント、認証等）、`lib/features/`（機能ごとの UI・ドメイン・必要ならリポジトリ）を採用する。
+- **状態管理・ナビゲーション**: 現時点では StatefulWidget / StatelessWidget を基本とする。最初のドメイン機能実装時に **Riverpod** を導入し、画面が 2 つ以上になったら **go_router** を `core/` で導入する。導入後はこのルールに方針を追記する。
 
 ## テスト
 
-- テストは `test/` に配置する。
+- テストは `test/` に配置する。`lib/` と同構造にする（例: `lib/features/vehicle/` → `test/features/vehicle/`）。共通ヘルパーは `test/helpers/` に置く。
+- 単体テスト: ドメインロジック・リポジトリ（API はモック）・パーサー等を優先。mocktail または mockito でモックする。
+- ウィジェットテスト: 重要画面・フォームは 1 本以上を目安に追加。依存は Provider override でモックする。
+- 統合テスト: 主要フローは必要に応じて `integration_test/` に配置。外部 API はモックする。
 - 実行は `mise exec -- flutter test` で行う。変更に応じてテストを追加・更新する。
