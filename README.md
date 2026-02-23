@@ -25,6 +25,20 @@ mise exec -- flutter pub get
 mise exec -- flutter run -d macos
 ```
 
+## Tesla Fleet API 認証サーバー
+
+Tesla Fleet API の公開鍵を配信する簡易 HTTP サーバーが `server/` にあります。Fleet API の登録（Step 3 以降）で、公開鍵を URL で提供するために利用します。
+
+```bash
+python server/server.py
+```
+
+起動後、公開鍵は次の URL で配信されます。
+
+- http://localhost:8080/.well-known/appspecific/com.tesla.3p.public-key.pem
+
+公開鍵の生成・配置手順は [server/README.md](server/README.md) および [server/well-known/appspecific/README.md](server/well-known/appspecific/README.md) を参照してください。
+
 ## よく使うコマンド
 
 | コマンド | 説明 |
@@ -37,6 +51,7 @@ mise exec -- flutter run -d macos
 
 - `lib/` — アプリの Dart ソース（エントリは `main.dart`）
 - `macos/` — macOS ネイティブプロジェクト
+- `server/` — Tesla Fleet API 用の認証サーバー（公開鍵配信）
 - `test/` — 単体・ウィジェットテスト
 - `pubspec.yaml` — 依存関係と Flutter 設定
 - `analysis_options.yaml` — Dart 解析・リント設定
