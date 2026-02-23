@@ -43,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Tesla Fleet API: 秘密鍵はリポジトリに含めない
+private-key.pem
+**/private-key.pem
