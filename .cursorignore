@@ -1,0 +1,18 @@
+# Build outputs
+build/
+
+# Dart/Flutter tooling
+.dart_tool/
+
+# Generated code (when used)
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
+# Native dependencies
+macos/Pods/
+ios/Pods/
+android/.gradle/
+
+# Git
+.git/
